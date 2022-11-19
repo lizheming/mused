@@ -1,0 +1,34 @@
+{
+  "name": "wechat",
+  "description": "application created by thinkjs",
+  "version": "1.0.0",
+  "author": "lizheming <i@imnerd.org>",
+  "scripts": {
+    "start": "node development.js",
+    "test": "THINK_UNIT_TEST=1 nyc ava test/ && nyc report --reporter=html",
+    "lint": "eslint src/",
+    "lint-fix": "eslint --fix src/"
+  },
+  "dependencies": {
+    "think-cache": "^1.0.0",
+    "think-cache-file": "^1.0.8",
+    "think-logger3": "^1.0.0",
+    "think-model": "^1.0.0",
+    "think-model-mysql": "^1.0.0",
+    "think-session": "^1.0.0",
+    "think-session-file": "^1.0.5",
+    "think-wechat": "^1.1.0",
+    "thinkjs": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-config-think": "^1.0.0",
+    "think-watcher": "^3.0.0"
+  },
+  "repository": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "readmeFilename": "README.md"
+}
