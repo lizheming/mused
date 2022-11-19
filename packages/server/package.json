@@ -1,0 +1,27 @@
+{
+  "name": "@muses/server",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "repository": {
+    "url": "https://github.com/lizheming/muse",
+    "directory": "packages/server"
+  },
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "dittorm": "1.0.0-beta.0",
+    "jsonwebtoken": "^8.5.1",
+    "nunjucks": "^3.2.3",
+    "phpass": "^0.1.1",
+    "speakeasy": "^2.0.0",
+    "think-helper": "^1.1.4",
+    "think-logger3": "^1.3.1",
+    "think-router-rest": "^1.0.5",
+    "thinkjs": "^3.2.14"
+  }
+}
