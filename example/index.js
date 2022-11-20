@@ -1,3 +1,3 @@
-const Application = require('../packages/server');
+const Application = require('mused');
 
 module.exports = Application({});

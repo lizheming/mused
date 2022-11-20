@@ -2,6 +2,12 @@ lockfileVersion: 5.4
 
 importers:
 
+  example:
+    specifiers:
+      mused: workspace:^0.0.1
+    dependencies:
+      mused: link:../packages/server
+
   packages/server:
     specifiers:
       '@koa/cors': ^4.0.0

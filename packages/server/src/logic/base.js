@@ -59,7 +59,7 @@ module.exports = class extends think.Logic {
           'email',
           'url',
           'display_name',
-          'type',
+          'desc',
           'github',
           'twitter',
           'facebook',

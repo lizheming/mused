@@ -1,0 +1,8 @@
+{
+  "name": "mused",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "mused": "workspace:^0.0.1"
+  }
+}
