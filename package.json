@@ -5,10 +5,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lizheming/muse.git"
+    "url": "git+https://github.com/lizheming/mused.git"
   },
   "bugs": {
-    "url": "https://github.com/lizheming/muse/issues"
+    "url": "https://github.com/lizheming/mused/issues"
   },
-  "homepage": "https://github.com/lizheming/muse#readme"
+  "homepage": "https://github.com/lizheming/mused#readme"
 }

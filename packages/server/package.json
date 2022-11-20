@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "repository": {
-    "url": "https://github.com/lizheming/muse",
+    "url": "https://github.com/lizheming/mused",
     "directory": "packages/server"
   },
   "license": "MIT",
