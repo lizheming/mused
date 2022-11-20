@@ -5,17 +5,20 @@ module.exports = class extends Base {
     this.body = this.get('echostr');
   }
 
-  async textAction() {
-    // const { Content } = this.post();
+  textAction() {
+    const {Content} = this.post();
+    think.logger.debug('debug info:');
+    think.logger.debug(this.post());
+    return this.success('你发送给我的是:' + Content.trim());
   }
 
   eventAction() {
     const message = this.post();
 
-    this.success(JSON.stringify(message));
+    return this.success(JSON.stringify(message));
   }
 
   __call() {
-    this.success('功能正在开发中~');
+    return this.success('功能正在开发中~');
   }
 };

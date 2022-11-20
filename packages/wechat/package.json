@@ -10,6 +10,7 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "http-connect": "^0.1.4",
     "think-cache": "^1.0.0",
     "think-cache-file": "^1.0.8",
     "think-logger3": "^1.0.0",
@@ -18,7 +19,8 @@
     "think-session": "^1.0.0",
     "think-session-file": "^1.0.5",
     "think-wechat": "^1.1.0",
-    "thinkjs": "^3.0.0"
+    "thinkjs": "^3.0.0",
+    "wechat": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^4.2.0",

@@ -14,7 +14,18 @@ module.exports = [
     handle: 'trace',
     enable: !think.isCli,
     options: {
-      debug: isDev
+      debug: true,
+      contentType: () => 'json',
+      error(err, ctx) {
+        if (/favicon.ico$/.test(ctx.url)) {
+          return;
+        }
+        if (think.isPrevent(err)) {
+          return false;
+        }
+
+        console.error(err);
+      }
     }
   },
   {
