@@ -51,7 +51,9 @@ module.exports = [
 
   {
     handle: 'router',
-    options: {},
+    options: {
+      prefix: ['/api']
+    },
   },
 
   { handle: routerREST },

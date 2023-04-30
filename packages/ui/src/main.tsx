@@ -1,4 +1,5 @@
 import { createRoot } from "react-dom/client";
+import App from "./pages/home";
 
 (function () {
   const container = document.getElementById("root");
@@ -6,5 +7,5 @@ import { createRoot } from "react-dom/client";
     return;
   }
   const root = createRoot(container);
-  root.render(<div>Hello World!</div>);
+  root.render(<App />);
 })();

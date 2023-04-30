@@ -1,0 +1,46 @@
+.page-navigator {
+    list-style: none;
+    margin: 25px 0;
+    padding: 0;
+    text-align: center
+}
+
+.page-navigator li {
+    display: inline-block;
+    margin: 0 4px;
+    border-radius: 2px
+}
+
+.page-navigator a {
+    display: inline-block;
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: none;
+}
+
+.page-navigator a,
+.page-navigator a:hover,
+.page-navigator a:visited {
+  color: var(--digu-global-color);
+  text-decoration: none;
+}
+
+.page-navigator a:hover {
+  color: var(--digu-primary-color);
+}
+
+.page-navigator .current {
+    font-weight: 500;
+    background: var(--digu-global-bg-color);
+    border: 1px solid var(--digu-primary-color)
+}
+
+.page-navigator .current a {
+    color: var(--digu-primary-color)
+}
+
+.page-navigator .next,.page-navigator .prev {
+    float: none;
+    font-size: inherit
+}

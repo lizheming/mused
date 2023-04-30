@@ -1,0 +1,12 @@
+header {
+  display: flex;
+}
+
+header h2 {
+  flex: 1;
+}
+
+header h2, header .pure-menu {
+  margin-top: 0.82em;
+  margin-bottom: 0.82em;
+}

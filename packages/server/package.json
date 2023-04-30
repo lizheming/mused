@@ -16,7 +16,7 @@
     "@koa/cors": "^4.0.0",
     "dittorm": "1.0.0-beta.0",
     "jsonwebtoken": "^8.5.1",
-    "nunjucks": "^3.2.3",
+    "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "speakeasy": "^2.0.0",
     "think-helper": "^1.1.4",
