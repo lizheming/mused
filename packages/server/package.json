@@ -12,8 +12,15 @@
   "engines": {
     "node": ">=14"
   },
+  "scripts": {
+    "apidoc": "apidoc -i src/logic -o www/static/doc"
+  },
+  "apidoc": {
+    "sampleUrl": "/api"
+  },
   "dependencies": {
     "@koa/cors": "^4.0.0",
+    "apidoc": "^0.55.0",
     "dittorm": "1.0.0-beta.0",
     "jsonwebtoken": "^8.5.1",
     "nunjucks": "^3.2.4",

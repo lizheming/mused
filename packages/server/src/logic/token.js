@@ -27,8 +27,8 @@ module.exports = class extends Base {
    * @apiGroup User
    * @apiVersion  0.0.1
    *
-   * @apiParam  {String}  email login user email
-   * @apiParam  {String}  password login user password
+   * @apiBody  {String}  email login user email
+   * @apiBody  {String}  password login user password
    * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0

@@ -18,6 +18,7 @@ module.exports = class extends BaseRest {
   async postAction() {
     const { email, password, code } = this.post();
     const user = await this.modelInstance.select({ email });
+    console.log(user);
 
     if (think.isEmpty(user) || /^verify:/i.test(user[0].type)) {
       return this.fail();

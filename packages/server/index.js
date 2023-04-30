@@ -9,6 +9,7 @@ module.exports = function (configParams = {}) {
   const app = new Application({
     ROOT_PATH: __dirname,
     APP_PATH: path.join(__dirname, 'src'),
+    STATIC_PATH: path.join(__dirname, 'www'),
     RUNTIME_PATH: path.join(os.tmpdir(), 'runtime'),
     proxy: true, // use proxy
     env: env || 'vercel',

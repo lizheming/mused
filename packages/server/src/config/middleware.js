@@ -1,3 +1,4 @@
+const path = require('path');
 const cors = require('@koa/cors');
 const routerREST = require('think-router-rest');
 const isDev = think.env === 'development';
@@ -14,6 +15,15 @@ module.exports = [
       sendResponseTime: isDev,
       requestTimeoutCallback: isTcb || isDeta || isAliyunFC ? false : () => {},
     },
+  },
+
+  {
+    handle: 'resource',
+    enable: true,
+    options: {
+      root: path.join(think.ROOT_PATH, 'www'),
+      publicPath: /^\/(static|favicon\.ico)/
+    }
   },
 
   {

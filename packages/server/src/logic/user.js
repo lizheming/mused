@@ -6,10 +6,10 @@ module.exports = class extends Base {
    * @apiGroup User
    * @apiVersion  0.0.1
    *
-   * @apiParam  {String}  display_name  user nick name
-   * @apiParam  {String}  email user email
-   * @apiParam  {String}  password user password
-   * @apiParam  {String}  url user link
+   * @apiBody  {String}  display_name  user nick name
+   * @apiBody  {String}  email user email
+   * @apiBody  {String}  password user password
+   * @apiBody  {String}  url user link
    * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
@@ -23,10 +23,10 @@ module.exports = class extends Base {
    * @apiGroup User
    * @apiVersion  0.0.1
    *
-   * @apiParam  {String}  [display_name]  user new nick name
-   * @apiParam  {String}  [url] user new link
-   * @apiParam  {String}  [password] user new password
-   * @apiParam  {String}  [github] user github account name
+   * @apiBody  {String}  [display_name]  user new nick name
+   * @apiBody  {String}  [url] user new link
+   * @apiBody  {String}  [password] user new password
+   * @apiBody  {String}  [github] user github account name
    * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
