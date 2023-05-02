@@ -1,6 +1,6 @@
 interface RequestParams {
   method?: "GET" | "POST" | "PUT" | "DELETE";
-  data?: Record<string, string>;
+  data?: Record<string, string | number | boolean>;
   headers?: Record<string, string>;
 
   body?: string;
@@ -8,7 +8,11 @@ interface RequestParams {
 
 export async function request(url: string, options: RequestParams = {}) {
   url = "/api" + url;
+  options.method = options.method || "GET";
+
   if (options.method === "GET") {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const query = new URLSearchParams(options.data).toString();
     url += url.indexOf("?") != -1 ? "&" : "?";
     url += query;
@@ -17,7 +21,11 @@ export async function request(url: string, options: RequestParams = {}) {
   if (!options.headers) {
     options.headers = {};
   }
-  if (options.data && !(options.data instanceof FormData)) {
+  if (
+    options.method !== "GET" &&
+    options.data &&
+    !(options.data instanceof FormData)
+  ) {
     options.headers["Content-Type"] = "application/json";
     options.body = JSON.stringify(options.data);
   }

@@ -23,7 +23,7 @@ module.exports = class extends Base {
   getAction() {}
 
   /**
-   * @api {POST} /token user login
+   * @api {POST} /api/token user login
    * @apiGroup User
    * @apiVersion  0.0.1
    *
@@ -38,7 +38,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {DELETE} /token  user logout
+   * @api {DELETE} /api/token  user logout
    * @apiGroup User
    * @apiVersion  0.0.1
    *

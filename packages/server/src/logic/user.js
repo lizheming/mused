@@ -2,7 +2,7 @@ const Base = require('./base');
 
 module.exports = class extends Base {
   /**
-   * @api {POST} /user user register
+   * @api {POST} /api/user user register
    * @apiGroup User
    * @apiVersion  0.0.1
    *
@@ -19,7 +19,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {PUT} /user update user profile
+   * @api {PUT} /api/user update user profile
    * @apiGroup User
    * @apiVersion  0.0.1
    *

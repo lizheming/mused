@@ -4,8 +4,8 @@ const {
   MYSQL_DB,
   MYSQL_PASSWORD,
   SQLITE_PATH,
-  PG_DB,
-  PG_PASSWORD,
+  POSTGRES_DATABASE,
+  POSTGRES_PASSWORD,
   MONGO_DB,
   MONGO_PASSWORD,
   TCB_ENV,
@@ -25,9 +25,9 @@ if (LEAN_KEY) {
 } else if (MONGO_DB) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
-} else if (PG_DB) {
+} else if (POSTGRES_DATABASE) {
   storage = 'postgresql';
-  jwtKey = jwtKey || PG_PASSWORD;
+  jwtKey = jwtKey || POSTGRES_PASSWORD;
 } else if (SQLITE_PATH) {
   storage = 'sqlite';
 } else if (MYSQL_DB) {

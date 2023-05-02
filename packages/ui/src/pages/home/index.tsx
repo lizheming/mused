@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Layout from "../../components/layout";
 import MuseList from "./components/muse-list";
 import Pagination from "./components/pagination";
@@ -9,12 +8,23 @@ import useUserInfo from "../../hooks/useUserInfo";
 import useMuses from "../../hooks/useMuses";
 
 import "./style.css";
+import { Muse } from "../../services/muse";
+import { useCallback } from "react";
 
 export default function Home() {
   const { userInfo, isLogin, userLogin, userLogout } = useUserInfo();
-  const { muses, } = useMuses();
+  const {
+    muses,
+    page,
+    totalPages,
+    setMuses,
+    onChange: onNavigate,
+  } = useMuses({ pageSize: 25 });
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const onPost = useCallback(
+    (muse: Muse) => setMuses([muse, ...muses]),
+    [muses]
+  );
 
   return (
     <Layout>
@@ -29,14 +39,16 @@ export default function Home() {
         />
       </header>
       <div className="main">
-        {isLogin ? <PostBox /> : null}
+        {isLogin ? <PostBox onPost={onPost} /> : null}
         <div className="list" style={{ marginTop: 20 }}>
           <MuseList data={muses} />
-          <Pagination
-            totalPages={6}
-            currentPage={currentPage}
-            onNavigate={setCurrentPage}
-          />
+          {totalPages > 1 ? (
+            <Pagination
+              totalPages={totalPages}
+              currentPage={page}
+              onNavigate={onNavigate}
+            />
+          ) : null}
         </div>
       </div>
     </Layout>

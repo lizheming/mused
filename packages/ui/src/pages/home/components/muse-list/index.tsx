@@ -1,14 +1,18 @@
 import React from "react";
 import MuseItem from "../muse-item";
 
-import './style.css';
+import { Muse } from "../../../../services/muse";
 
-export default function MuseList() {
-  const data = [1, 2, 3, 4, 5];
+import "./style.css";
+
+interface MuseListProps {
+  data?: Muse[];
+}
+export default function MuseList(props: MuseListProps) {
   return (
     <ul>
-      {data.map((_, k) => (
-        <MuseItem key={k} />
+      {props.data?.map((muse, k) => (
+        <MuseItem key={k} data={muse} />
       ))}
     </ul>
   );

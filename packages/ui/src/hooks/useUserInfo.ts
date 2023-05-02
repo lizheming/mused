@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import { getUserInfo, login, LoginParams, logout } from "../services/user";
+import {
+  getUserInfo,
+  login,
+  LoginParams,
+  logout,
+  User,
+} from "../services/user";
 
 export default function useUserInfo() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState<User | null>(null);
 
   useEffect(() => {
     getUserInfo().then(setUserInfo);
@@ -10,9 +16,12 @@ export default function useUserInfo() {
 
   return {
     userInfo,
-    isLogin: userInfo && userInfo.email,
+    isLogin: Boolean(userInfo && userInfo.email),
     async userLogin(params: LoginParams) {
       const userInfo = await login(params);
+
+      window.TOKEN = userInfo.token;
+      sessionStorage.TOKEN = userInfo.token;
       setUserInfo(userInfo);
     },
     userLogout() {

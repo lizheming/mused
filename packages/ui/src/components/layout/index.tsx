@@ -1,9 +1,8 @@
-import 'normalize.css';
-import 'purecss';
-import './style.css';
+import { ReactNode } from "react";
+import "normalize.css";
+import "purecss";
+import "./style.css";
 
-export default function Layout(props) {
-  return (
-    <div className="page">{props.children}</div>
-  );
+export default function Layout({ children }: { children: ReactNode }) {
+  return <div className="page">{children}</div>;
 }

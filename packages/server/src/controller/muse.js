@@ -8,8 +8,21 @@ module.exports = class extends BaseRest {
   }
 
   async getAction() {
-    const data = await this.modelInstance.select();
-    return this.success(data);
+    const { page, pageSize } = this.get();
+
+    const where = {};
+    const totalCount = await this.modelInstance.count(where);
+    const data = await this.modelInstance.select(where, {
+      desc: 'time',
+      limit: pageSize,
+      offset: Math.max((page - 1) * pageSize, 0),
+    });
+    return this.success({
+      page,
+      totalPages: Math.ceil(totalCount / pageSize),
+      pageSize,
+      data
+    });
   }
 
   async postAction() {
@@ -19,8 +32,7 @@ module.exports = class extends BaseRest {
       origin,
       status,
       sticky,
-      create_time: Date.now(),
-      update_time: Date.now(),
+      time: Date.now(),
     });
     
     return this.success(resp);
@@ -30,6 +42,5 @@ module.exports = class extends BaseRest {
   }
 
   deleteAction() {
-
   }
 }

@@ -4,6 +4,12 @@ const {
   LEAN_KEY,
   LEAN_MASTER_KEY,
   LEAN_SERVER,
+
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_DATABASE,
+  POSTGRES_PORT,
+  POSTGRES_HOST,
 } = process.env;
 
 const MODEL_ADAPTER = {
@@ -12,6 +18,14 @@ const MODEL_ADAPTER = {
     appKey: LEAN_KEY,
     masterKey: LEAN_MASTER_KEY,
     serverURL: LEAN_SERVER,
+  },
+  postgresql: {
+    user: POSTGRES_USER,
+    password: POSTGRES_PASSWORD,
+    database: POSTGRES_DATABASE,
+    port: POSTGRES_PORT || 5432,
+    host: POSTGRES_HOST,
+    ssl: true,
   }
 };
 

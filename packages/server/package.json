@@ -13,10 +13,11 @@
     "node": ">=14"
   },
   "scripts": {
+    "prepublishOnly": "sh ./build.sh",
     "apidoc": "apidoc -i src/logic -o www/static/doc"
   },
   "apidoc": {
-    "sampleUrl": "/api"
+    "sampleUrl": "http://localhost:9090"
   },
   "dependencies": {
     "@koa/cors": "^4.0.0",
