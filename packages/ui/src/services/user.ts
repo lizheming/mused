@@ -6,6 +6,7 @@ export interface User {
   type: "adminstrator" | "guest";
   url: string;
   id: string;
+  token?: string;
 }
 
 export function getUserInfo(): Promise<User> {
@@ -27,4 +28,20 @@ export async function logout() {
   window.TOKEN = undefined;
   sessionStorage.removeItem("TOKEN");
   localStorage.removeItem("TOKEN");
+}
+
+export interface UpdateUserInfoParams {
+  type?: "token";
+}
+
+export async function updateUserInfo({
+  type,
+  ...data
+}: UpdateUserInfoParams): Promise<Partial<User>> {
+  let url = "/user";
+  if (type) {
+    url += `?type=${type}`;
+  }
+
+  return request(url, { method: "PUT", data });
 }

@@ -4,6 +4,8 @@ import {
   login,
   LoginParams,
   logout,
+  updateUserInfo,
+  UpdateUserInfoParams,
   User,
 } from "../services/user";
 
@@ -27,6 +29,14 @@ export default function useUserInfo() {
     userLogout() {
       logout();
       setUserInfo(null);
+    },
+    async updateUserProfile(data: UpdateUserInfoParams) {
+      if (!userInfo) {
+        return;
+      }
+
+      const resp = await updateUserInfo(data);
+      setUserInfo({ ...userInfo, ...resp });
     },
   };
 }

@@ -87,4 +87,16 @@ module.exports = class extends BaseRest {
 
     return this.success({ verify: true });
   }
+
+  async putAction() {
+    const { type } = this.get();
+    const { userInfo } = this.ctx.state;
+
+    switch(type) {
+      case 'token':
+        const token = think.uuid();
+        await this.modelInstance.update({token}, { email: userInfo.email });
+        return this.success({token});
+    }
+  }
 };

@@ -61,6 +61,8 @@ module.exports = class extends Base {
    *       "Authorization": "Bear 1234"
    *     }
    *
+   * @apiParams (200) {String}  openId  muse user OpenAPI
+   * 
    * @apiBody  (200) {String}  content muse content
    * @apiBody  (200) {Boolean} sticky  muse sticky status
    * @apiBody  (200) {Number}  status  muse status

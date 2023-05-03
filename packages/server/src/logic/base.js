@@ -39,38 +39,42 @@ module.exports = class extends think.Logic {
 
     this.ctx.state.userInfo = {};
     const { authorization } = this.ctx.req.headers;
-    const { state } = this.get();
+    const { state, openId } = this.get();
+    const userWhere = {};
 
-    if (!authorization && !state) {
-      return;
-    }
-    const token = state || authorization.replace(/^Bearer /, '');
-    const userMail = jwt.verify(token, think.config('jwtKey'));
-
-    if (think.isEmpty(userMail) || !think.isString(userMail)) {
-      return;
-    }
-
-    const user = await this.modelInstance.select(
-      { email: userMail },
-      {
-        field: [
-          'id',
-          'email',
-          'url',
-          'display_name',
-          'desc',
-          'github',
-          'twitter',
-          'facebook',
-          'google',
-          'weibo',
-          'qq',
-          'avatar',
-          '2fa',
-        ],
+    if (openId) {
+      userWhere.token = openId;
+    } else if (authorization || state) {
+      const token = state || authorization.replace(/^Bearer /, '');
+      const userMail = jwt.verify(token, think.config('jwtKey'));
+      if (!think.isEmpty(userMail) && think.isString(userMail)) {
+        userWhere.email = userMail;
       }
-    );
+    }
+
+    if (think.isEmpty(userWhere)) {
+      return;
+    }
+
+    const userOptions = {
+      field: [
+        'id',
+        'email',
+        'url',
+        'display_name',
+        'desc',
+        'github',
+        'twitter',
+        'facebook',
+        'google',
+        'weibo',
+        'qq',
+        'avatar',
+        '2fa',
+        'token',
+      ],
+    };
+    const user = await this.modelInstance.select(userWhere, userOptions);
 
     if (think.isEmpty(user)) {
       return;
@@ -79,7 +83,7 @@ module.exports = class extends think.Logic {
     const userInfo = user[0];
 
     this.ctx.state.userInfo = userInfo;
-    this.ctx.state.token = token;
+    // this.ctx.state.token = token;
   }
 
   getResource() {

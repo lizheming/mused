@@ -12,7 +12,7 @@ import { Muse } from "../../services/muse";
 import { useCallback } from "react";
 
 export default function Home() {
-  const { userInfo, isLogin, userLogin, userLogout } = useUserInfo();
+  const { userInfo, isLogin, userLogin, userLogout, updateUserProfile } = useUserInfo();
   const {
     muses,
     page,
@@ -36,6 +36,7 @@ export default function Home() {
           isLogin={isLogin}
           onLogin={userLogin}
           onLogout={userLogout}
+          onUpdateUserProfile={updateUserProfile}
         />
       </header>
       <div className="main">

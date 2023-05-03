@@ -1,24 +1,33 @@
 import Dialog from "rc-dialog";
 import "rc-dialog/assets/index.css";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useCallback } from "react";
 import { useState } from "react";
-import { LoginParams, User } from "../../../../services/user";
+import {
+  LoginParams,
+  UpdateUserInfoParams,
+  User,
+} from "../../../../services/user";
 
+import "./style.css";
 interface LoginPanelProps {
   userInfo: User | null;
   isLogin: boolean;
   onLogin: (data: LoginParams) => void;
   onLogout: () => void;
+  onUpdateUserProfile: (data: UpdateUserInfoParams) => void;
 }
 export default function LoginPanel({
   userInfo,
   isLogin,
   onLogin,
   onLogout,
+  onUpdateUserProfile,
 }: LoginPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [loging, setLoging] = useState(false);
+  const [generating, setGenerating] = useState(false);
 
   useEffect(() => {
     setIsOpen(false);
@@ -28,6 +37,9 @@ export default function LoginPanel({
     ? [
         {
           text: userInfo?.display_name,
+          action() {
+            setIsProfileOpen(true);
+          },
         },
         {
           text: "退出",
@@ -69,6 +81,38 @@ export default function LoginPanel({
     []
   );
 
+  const onGenerateToken = useCallback(async () => {
+    try {
+      setGenerating(true);
+      await onUpdateUserProfile({ type: "token" });
+    } catch (e) {
+      alert((e as any).message || "生成失败");
+    } finally {
+      setGenerating(false);
+    }
+  }, []);
+
+  const openAPI = useMemo(
+    () =>
+      location.protocol +
+      "//" +
+      location.host +
+      "/api/muse?openId=" +
+      userInfo?.token,
+    [userInfo]
+  );
+  const preText = useMemo(() => {
+    if (!userInfo?.token) {
+      return "";
+    }
+    return `POST ${openAPI}
+Content-type: application/json
+{
+  "content": "Hello Muse from ${location.protocol + "//" + location.host}"
+}
+`;
+  }, [userInfo?.token, openAPI]);
+
   return (
     <>
       <div className="pure-menu pure-menu-horizontal" style={{ width: "auto" }}>
@@ -87,6 +131,49 @@ export default function LoginPanel({
         </ul>
       </div>
 
+      <Dialog
+        onClose={() => setIsProfileOpen(!isProfileOpen)}
+        visible={isProfileOpen}
+      >
+        <form className="pure-form pure-form-aligned">
+          <fieldset>
+            <legend>OpenAPI</legend>
+            {userInfo?.token ? (
+              <div className="pure-control-group">
+                <textarea className="pure-input-1" readOnly>
+                  {openAPI}
+                </textarea>
+              </div>
+            ) : null}
+            <button
+              type="button"
+              className="pure-button pure-button-primary"
+              onClick={onGenerateToken}
+              disabled={generating}
+            >
+              {userInfo?.token ? "重置" : "生成"}
+            </button>
+          </fieldset>
+          {preText ? (
+            <fieldset>
+              <pre className="pre-openapi">{preText}</pre>
+            </fieldset>
+          ) : null}
+          {/* <fieldset>
+            <legend>OpenAPI</legend>
+            <div className="pure-control-group">
+              <textarea className="pure-input-1" readOnly></textarea>
+            </div>
+            <button
+              type="submit"
+              className="pure-button pure-button-primary"
+              disabled={loging}
+            >
+              重置
+            </button>
+          </fieldset> */}
+        </form>
+      </Dialog>
       <Dialog onClose={() => setIsOpen(!isOpen)} visible={isOpen}>
         <form className="pure-form pure-form-aligned" onSubmit={onSubmit}>
           <fieldset>

@@ -19,6 +19,19 @@ module.exports = class extends Base {
   }
 
   /**
+   * @api {PUT} /api/user?type=token regenerate open api token
+   * @apiGroup User
+   * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  lang  language
+   *
+   * @apiSuccess  (200) {Number}  errno 0
+   * @apiSuccess  (200) {String}  errmsg  return error message if error
+   * @apiSuccess  (200) {Object}  data 
+   * @apiSuccess  (200) {String}  data.token
+   */
+
+  /**
    * @api {PUT} /api/user update user profile
    * @apiGroup User
    * @apiVersion  0.0.1
