@@ -10,3 +10,10 @@ then
 fi
 
 cp ../ui/dist/* ./www/static
+
+pnpm run --filter ./ apidoc
+rc=$?
+if [[ $rc != 0 ]];
+then 
+  exit $rc
+fi
