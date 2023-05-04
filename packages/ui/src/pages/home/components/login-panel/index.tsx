@@ -81,10 +81,10 @@ export default function LoginPanel({
     []
   );
 
-  const onGenerateToken = useCallback(async () => {
+  const onGenerateOpenId = useCallback(async () => {
     try {
       setGenerating(true);
-      await onUpdateUserProfile({ type: "token" });
+      await onUpdateUserProfile({ type: "open_id" });
     } catch (e) {
       alert((e as any).message || "生成失败");
     } finally {
@@ -98,11 +98,11 @@ export default function LoginPanel({
       "//" +
       location.host +
       "/api/muse?openId=" +
-      userInfo?.token,
+      userInfo?.open_id,
     [userInfo]
   );
   const preText = useMemo(() => {
-    if (!userInfo?.token) {
+    if (!userInfo?.open_id) {
       return "";
     }
     return `POST ${openAPI}
@@ -111,7 +111,7 @@ Content-type: application/json
   "content": "Hello Muse from ${location.protocol + "//" + location.host}"
 }
 `;
-  }, [userInfo?.token, openAPI]);
+  }, [userInfo?.open_id, openAPI]);
 
   return (
     <>
@@ -138,7 +138,7 @@ Content-type: application/json
         <form className="pure-form pure-form-aligned">
           <fieldset>
             <legend>OpenAPI</legend>
-            {userInfo?.token ? (
+            {userInfo?.open_id ? (
               <div className="pure-control-group">
                 <textarea className="pure-input-1" readOnly>
                   {openAPI}
@@ -148,10 +148,10 @@ Content-type: application/json
             <button
               type="button"
               className="pure-button pure-button-primary"
-              onClick={onGenerateToken}
+              onClick={onGenerateOpenId}
               disabled={generating}
             >
-              {userInfo?.token ? "重置" : "生成"}
+              {userInfo?.open_id ? "重置" : "生成"}
             </button>
           </fieldset>
           {preText ? (

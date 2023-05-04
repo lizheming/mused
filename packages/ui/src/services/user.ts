@@ -6,7 +6,7 @@ export interface User {
   type: "adminstrator" | "guest";
   url: string;
   id: string;
-  token?: string;
+  open_id?: string;
 }
 
 export function getUserInfo(): Promise<User> {
@@ -31,7 +31,7 @@ export async function logout() {
 }
 
 export interface UpdateUserInfoParams {
-  type?: "token";
+  type?: "open_id";
 }
 
 export async function updateUserInfo({

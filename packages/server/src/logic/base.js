@@ -43,7 +43,7 @@ module.exports = class extends think.Logic {
     const userWhere = {};
 
     if (openId) {
-      userWhere.token = openId;
+      userWhere.open_id = openId;
     } else if (authorization || state) {
       const token = state || authorization.replace(/^Bearer /, '');
       const userMail = jwt.verify(token, think.config('jwtKey'));
@@ -71,7 +71,7 @@ module.exports = class extends think.Logic {
         'qq',
         'avatar',
         '2fa',
-        'token',
+        'open_id',
       ],
     };
     const user = await this.modelInstance.select(userWhere, userOptions);

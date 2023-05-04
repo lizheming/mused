@@ -19,7 +19,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {PUT} /api/user?type=token regenerate open api token
+   * @api {PUT} /api/user?type=open_id regenerate open api open_id
    * @apiGroup User
    * @apiVersion  0.0.1
    *
@@ -28,7 +28,7 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    * @apiSuccess  (200) {Object}  data 
-   * @apiSuccess  (200) {String}  data.token
+   * @apiSuccess  (200) {String}  data.open_id
    */
 
   /**

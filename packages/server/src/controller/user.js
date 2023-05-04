@@ -93,10 +93,10 @@ module.exports = class extends BaseRest {
     const { userInfo } = this.ctx.state;
 
     switch(type) {
-      case 'token':
-        const token = think.uuid();
-        await this.modelInstance.update({token}, { email: userInfo.email });
-        return this.success({token});
+      case 'open_id':
+        const openId = think.uuid();
+        await this.modelInstance.update({open_id: openId}, { email: userInfo.email });
+        return this.success({open_id: openId});
     }
   }
 };
