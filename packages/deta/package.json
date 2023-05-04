@@ -1,0 +1,13 @@
+{
+  "name": "mused",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A lightweight muse hub. Open Source and Free forever.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mused": "0.0.2"
+  }
+}

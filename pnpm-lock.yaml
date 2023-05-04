@@ -11,6 +11,12 @@ importers:
     dependencies:
       mused: link:../packages/server
 
+  packages/deta:
+    specifiers:
+      mused: workspace:^0.0.2
+    dependencies:
+      mused: link:../server
+
   packages/server:
     specifiers:
       '@koa/cors': ^4.0.0

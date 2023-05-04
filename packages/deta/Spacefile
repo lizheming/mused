@@ -1,0 +1,121 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+app_name: Mused
+# icon: ./logo.png
+micros:
+  - name: mused
+    primary: true
+    src: ./
+    engine: nodejs16
+    run: "node index.js"
+    public_routes:
+    - /*
+    presets:
+      env:
+        - name: LEAN_ID
+          description: LeanCloud Application ID
+        - name: LEAN_KEY
+          description: LeanCloud Application Key
+        - name: LEAN_MASTER_KEY
+          description: LeanCloud Application Master Key
+        - name: LEAN_SERVER
+          description: LeanCloud server address if you're leancloud china user
+        - name: SECURE_DOMAINS
+          description: Secure Domains config. Supports multiple domain with Comma separated
+        - name: SMTP_SERVICE
+          description: SMTP mail service provider
+        - name: SMTP_HOST
+          description: SMTP server address
+        - name: SMTP_PORT
+          description: SMTP server port
+        - name: SMTP_USER
+          description: SMTP username
+        - name: SMTP_PASS
+          description: SMTP Password.
+        - name: SMTP_SECURE
+          description: SMTP connect with SSL
+        - name: SENDER_NAME
+          description: Customize sender name
+        - name: SENDER_EMAIL
+          description: Customize sender email
+        - name: MONGO_DB
+          description: MongoDB database name
+          default: ''
+        - name: MONGO_USER
+          description: MongoDB server username
+          default: ''
+        - name: MONGO_PASSWORD
+          description: MongoDB server password
+          default: ''
+        - name: MONGO_HOST
+          description: MongoDB server address, support array format
+          default: 127.0.0.1
+        - name: MONGO_PORT
+          description: MongoDB server port, support array format
+          default: '27017'
+        - name: MONGO_REPLICASET
+          description: MongoDB replica set
+          default: ''
+        - name: MONGO_AUTHSOURCE
+          description: MongoDB auth source
+          default: ''
+        - name: MONGO_OPT_SSL
+          description: use SSL connection
+          default: 'false'
+        - name: MYSQL_DB
+          description: MySQL database name
+          default: ''
+        - name: MYSQL_USER
+          description: MySQL server username
+          default: ''
+        - name: MYSQL_PASSWORD
+          description: MySQL server password
+          default: ''
+        - name: MYSQL_HOST
+          description: MySQL server address
+          default: 127.0.0.1
+        - name: MYSQL_PORT
+          description: MySQL server port
+          default: '3306'
+        - name: MYSQL_PREFIX
+          description: MySQL table prefix
+          default: ''
+        - name: MYSQL_CHARSET
+          description: MySQL table charset
+          default: utf8mb4
+        - name: MYSQL_SSL
+          description: whether use SSL connection
+          default: 'false'
+        - name: JWT_TOKEN
+          description: Random String for login token generator
+          default: ''
+        - name: POSTGRES_DATABASE
+          description: PostgreSQL database name
+          default: ''
+        - name: POSTGRES_USER
+          description: PostgreSQL server username
+          default: ''
+        - name: POSTGRES_PASSWORD
+          description: PostgreSQL server password
+          default: ''
+        - name: POSTGRES_HOST
+          description: PostgreSQL server address
+          default: 127.0.0.1
+        - name: POSTGRES_PORT
+          description: PostgreSQL server port
+          default: '3211'
+        - name: POSTGRES_PREFIX
+          description: PostgreSQL table prefix
+          default: ''
+        - name: POSTGRES_SSL
+          description: set to true to use SSL connection
+          default: 'false'
+        - name: GITHUB_TOKEN
+          description: Personal access tokens
+          default: ''
+        - name: GITHUB_REPO
+          description: repository name, such as walinejs/waline
+          default: ''
+        - name: GITHUB_PATH
+          description: The data storage directory, such as data means it is stored in the data directory, root directory by default
+          default: ''
