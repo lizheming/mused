@@ -37,7 +37,7 @@ export interface UpdateUserInfoParams {
 export async function updateUserInfo({
   type,
   ...data
-}: UpdateUserInfoParams): Promise<Partial<User>> {
+}: UpdateUserInfoParams & RegisterUserParams): Promise<Partial<User>> {
   let url = "/user";
   if (type) {
     url += `?type=${type}`;

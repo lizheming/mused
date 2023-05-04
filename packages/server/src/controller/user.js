@@ -97,6 +97,15 @@ module.exports = class extends BaseRest {
         const openId = think.uuid();
         await this.modelInstance.update({open_id: openId}, { email: userInfo.email });
         return this.success({open_id: openId});
+
+      default:
+        const profile = this.post('display_name,url,password');
+        if (profile.password) {
+          profile.password = new PasswordHash().hashPassword(profile.password);
+        }
+        await this.modelInstance.update(profile, { email: userInfo.email });
+        return this.success({ ...profile, password: undefined });
+        
     }
   }
 };

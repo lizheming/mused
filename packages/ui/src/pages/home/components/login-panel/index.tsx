@@ -100,6 +100,44 @@ export default function LoginPanel({
     }
   }, []);
 
+  const onUpdateUserProfileSubmit = useCallback<
+    React.FormEventHandler<HTMLFormElement>
+  >(async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      display_name: "",
+      url: "",
+      password: "",
+      password_again: "",
+    };
+
+    for (const [key, value] of formData.entries()) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      data[key] = value;
+    }
+    if (
+      data.password &&
+      data.password_again &&
+      data.password !== data.password_again
+    ) {
+      return alert("passwords don't match");
+    }
+
+    try {
+      setLoging(true);
+      await onUpdateUserProfile({
+        ...data,
+        password_again: undefined,
+      });
+    } catch (e) {
+      alert((e as any).message || "更新失败");
+    } finally {
+      setLoging(false);
+    }
+  }, []);
+
   const onRegisterSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
     async (e) => {
       e.preventDefault();
@@ -127,7 +165,7 @@ export default function LoginPanel({
         setIsOpen(true);
         setIsRegisterOpen(false);
       } catch (e) {
-        alert((e as any).message || "登录失败");
+        alert((e as any).message || "注册失败");
       } finally {
         setLoging(false);
       }
@@ -178,7 +216,54 @@ Content-type: application/json
         onClose={() => setIsProfileOpen(!isProfileOpen)}
         visible={isProfileOpen}
       >
-        <form className="pure-form pure-form-aligned">
+        <form
+          className="pure-form pure-form-stacked"
+          onSubmit={onUpdateUserProfileSubmit}
+        >
+          <fieldset>
+            <legend>个人资料</legend>
+            <label htmlFor="aligned-display-name">昵称</label>
+            <input
+              type="text"
+              id="aligned-display-name"
+              name="display_name"
+              defaultValue={userInfo?.display_name}
+            />
+            <label htmlFor="aligned-url">个人主页地址</label>
+            <input
+              type="text"
+              id="aligned-url"
+              name="url"
+              defaultValue={userInfo?.url}
+            />
+            <button
+              type="submit"
+              className="pure-button pure-button-primary"
+              disabled={loging}
+            >
+              更新我的档案
+            </button>
+          </fieldset>
+
+          <fieldset>
+            <legend>密码修改</legend>
+            <label htmlFor="aligned-password">密码</label>
+            <input type="password" id="aligned-password" name="password" />
+            <label htmlFor="aligned-password-again">再次输入密码</label>
+            <input
+              type="password"
+              id="aligned-password-again"
+              name="password_again"
+            />
+            <button
+              type="submit"
+              className="pure-button pure-button-primary"
+              disabled={loging}
+            >
+              更新密码
+            </button>
+          </fieldset>
+
           <fieldset>
             <legend>OpenAPI</legend>
             {userInfo?.open_id ? (
