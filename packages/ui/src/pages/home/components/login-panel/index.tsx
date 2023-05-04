@@ -183,9 +183,7 @@ Content-type: application/json
             <legend>OpenAPI</legend>
             {userInfo?.open_id ? (
               <div className="pure-control-group">
-                <textarea className="pure-input-1" readOnly>
-                  {openAPI}
-                </textarea>
+                <textarea className="pure-input-1" readOnly value={openAPI} />
               </div>
             ) : null}
             <button
