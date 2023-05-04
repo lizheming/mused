@@ -127,10 +127,9 @@ export default function LoginPanel({
 
     try {
       setLoging(true);
-      await onUpdateUserProfile({
-        ...data,
-        password_again: undefined,
-      });
+      await onUpdateUserProfile(
+        Object.assign({}, data, { password_again: undefined })
+      );
     } catch (e) {
       alert((e as any).message || "更新失败");
     } finally {
