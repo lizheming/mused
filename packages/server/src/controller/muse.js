@@ -26,6 +26,7 @@ module.exports = class extends BaseRest {
   }
 
   async postAction() {
+    const { userInfo } = this.ctx.state;
     const { content, origin, status, sticky } = this.post();
     const resp = await this.modelInstance.add({
       content,
@@ -33,6 +34,7 @@ module.exports = class extends BaseRest {
       status,
       sticky,
       time: Date.now(),
+      user_id: userInfo.id,
     });
     
     return this.success(resp);
