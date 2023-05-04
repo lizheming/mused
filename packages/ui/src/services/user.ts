@@ -45,3 +45,12 @@ export async function updateUserInfo({
 
   return request(url, { method: "PUT", data });
 }
+
+export type RegisterUserParams = Pick<
+  User,
+  "email" | "display_name" | "url"
+> & { password: string };
+
+export async function registerUser(data: RegisterUserParams): Promise<void> {
+  return request("/user", { method: "POST", data });
+}

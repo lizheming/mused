@@ -7,6 +7,7 @@ import {
   LoginParams,
   UpdateUserInfoParams,
   User,
+  registerUser,
 } from "../../../../services/user";
 
 import "./style.css";
@@ -26,6 +27,7 @@ export default function LoginPanel({
 }: LoginPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [loging, setLoging] = useState(false);
   const [generating, setGenerating] = useState(false);
 
@@ -51,6 +53,12 @@ export default function LoginPanel({
           text: "登录",
           action() {
             setIsOpen(true);
+          },
+        },
+        {
+          text: "注册",
+          action() {
+            setIsRegisterOpen(true);
           },
         },
       ];
@@ -91,6 +99,41 @@ export default function LoginPanel({
       setGenerating(false);
     }
   }, []);
+
+  const onRegisterSubmit = useCallback<React.FormEventHandler<HTMLFormElement>>(
+    async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        display_name: "",
+        email: "",
+        url: "",
+        password: "",
+        password_again: "",
+      };
+      for (const [key, value] of formData.entries()) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        data[key] = value;
+      }
+
+      if (data.password !== data.password_again) {
+        return alert("passwords don't match");
+      }
+
+      try {
+        setLoging(true);
+        await registerUser(data);
+        setIsOpen(true);
+        setIsRegisterOpen(false);
+      } catch (e) {
+        alert((e as any).message || "登录失败");
+      } finally {
+        setLoging(false);
+      }
+    },
+    []
+  );
 
   const openAPI = useMemo(
     () =>
@@ -192,6 +235,56 @@ Content-type: application/json
                 disabled={loging}
               >
                 登录
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </Dialog>
+
+      <Dialog
+        onClose={() => setIsRegisterOpen(!isRegisterOpen)}
+        visible={isRegisterOpen}
+      >
+        <form
+          className="pure-form pure-form-aligned"
+          onSubmit={onRegisterSubmit}
+        >
+          <fieldset>
+            <div className="pure-control-group">
+              <label htmlFor="aligned-display-name">昵称</label>
+              <input
+                type="text"
+                id="aligned-display-name"
+                name="display_name"
+              />
+            </div>
+            <div className="pure-control-group">
+              <label htmlFor="aligned-email">邮箱</label>
+              <input type="email" id="aligned-email" name="email" />
+            </div>
+            <div className="pure-control-group">
+              <label htmlFor="aligned-url">个人网站</label>
+              <input type="url" id="aligned-url" name="url" />
+            </div>
+            <div className="pure-control-group">
+              <label htmlFor="aligned-password">密码</label>
+              <input type="password" id="aligned-password" name="password" />
+            </div>
+            <div className="pure-control-group">
+              <label htmlFor="aligned-password-again">再次输入密码</label>
+              <input
+                type="password"
+                id="aligned-password-again"
+                name="password_again"
+              />
+            </div>
+            <div className="pure-controls">
+              <button
+                type="submit"
+                className="pure-button pure-button-primary"
+                disabled={loging}
+              >
+                注册
               </button>
             </div>
           </fieldset>
