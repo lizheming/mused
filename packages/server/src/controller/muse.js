@@ -1,10 +1,10 @@
 const BaseRest = require('./rest');
-const Model = require('../service/model');
+const Model = require('dittorm/dist/src/utils/model').default;
 
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = new Model('muse');
+    this.modelInstance = Model('muse');
   }
 
   async getAction() {

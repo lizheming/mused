@@ -1,11 +1,11 @@
 const path = require('path');
 const jwt = require('jsonwebtoken');
-const Model = require('../service/model');
+const Model = require('dittorm/dist/src/utils/model').default;
 
 module.exports = class extends think.Logic {
   constructor(...args) {
     super(...args);
-    this.modelInstance = new Model('user');
+    this.modelInstance = Model('user');
     this.resource = this.getResource();
     this.id = this.getId();
   }

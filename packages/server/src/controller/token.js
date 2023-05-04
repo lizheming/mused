@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const helper = require('think-helper');
 const { PasswordHash } = require('phpass');
 const BaseRest = require('./rest');
-const Model = require('../service/model');
+const Model = require('dittorm/dist/src/utils/model').default;
 
 module.exports = class extends BaseRest {
   constructor(...args) {
